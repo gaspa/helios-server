@@ -41,7 +41,8 @@ def getOpenIDStore(filestore_path, table_prefix):
     The result of this function should be passed to the Consumer
     constructor as the store parameter.
     """
-    if not settings.DATABASE_ENGINE:
+    #if not settings.DATABASE_ENGINE:
+    if not settings.DATABASES['default']['ENGINE']:
         return FileOpenIDStore(filestore_path)
 
     # Possible side-effect: create a database connection if one isn't
@@ -62,12 +63,14 @@ def getOpenIDStore(filestore_path, table_prefix):
         }
 
     try:
-        s = types[settings.DATABASE_ENGINE](connection.connection,
+        #s = types[settings.DATABASE_ENGINE](connection.connection,
+        #                                    **tablenames)
+        s = types[settings.DATABASES['default']['ENGINE']](connection.connection,
                                             **tablenames)
     except KeyError:
         raise ImproperlyConfigured, \
               "Database engine %s not supported by OpenID library" % \
-              (settings.DATABASE_ENGINE,)
+	     (settings.DATABASES['default']['ENGINE'],)
 
     try:
         s.createTables()
