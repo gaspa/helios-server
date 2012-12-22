@@ -5,7 +5,7 @@ from django.conf import settings
 
 urlpatterns = patterns(
     '',
-    (r'^auth/', include('auth.urls')),
+    (r'^auth/', include('helios_auth.urls')),
     (r'^helios/', include('helios.urls')),
 
     # SHOULD BE REPLACED BY APACHE STATIC PATH
