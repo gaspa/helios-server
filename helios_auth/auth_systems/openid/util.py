@@ -56,10 +56,9 @@ def getOpenIDStore(filestore_path, table_prefix):
         }
 
     types = {
-        'postgresql': sqlstore.PostgreSQLStore,
         'django.db.backends.postgresql_psycopg2': sqlstore.PostgreSQLStore,
-        'mysql': sqlstore.MySQLStore,
-        'sqlite3': sqlstore.SQLiteStore,
+        'django.db.backends.mysql': sqlstore.MySQLStore,
+        'django.db.backends.sqlite3': sqlstore.SQLiteStore,
         }
 
     try:
